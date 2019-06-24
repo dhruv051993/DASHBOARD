@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  abc: any = [
+    {
+      id: 123,
+      sname: 'md',
+      svalue: 23,
+      sArray: [
+        {
+          id: 123,
+          sname: 'fg',
+          svalue: 23,
+          sArray: []
+        },
+        {
+          id: 123,
+          sname: 'dg',
+          svalue: 23,
+          sArray: [
+            {
+              id: 123,
+              sname: 'zg',
+              svalue: 23,
+              sArray: []
+            },
+            {
+              id: 123,
+              sname: 'ug',
+              svalue: 23,
+              sArray: []
+            },
+          ]
+        },
+        {
+          id: 123,
+          sname: 'eg',
+          svalue: 23,
+          sArray: []
+        }
+      ]
+    },
+    {
+      id: 123,
+      sname: 'ed',
+      svalue: 23,
+      sArray: []
+    }
+  ];
+  sortArray(arr: any) {
+    arr.sort((a, b) => (a.sname > b.sname) ? 1 : -1);
+  }
+
+  sortArray1(arr: any[]) {
+    arr.forEach((index) => {
+      if (index.sArray) {
+        this.sortArray(index.sArray);
+        this.sortArray1(index.sArray);
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.sortArray(this.abc);
+    this.sortArray1(this.abc);
+    console.log(this.abc);
+  }
+
+  name = 'Angular';
+}
